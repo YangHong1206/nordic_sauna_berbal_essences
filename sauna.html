@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nordic Blooms Garden - The Ritual</title>
+    <!-- 加载Tailwind CSS --><script src="https://cdn.tailwindcss.com"></script>
+    <!-- 加载Inter字体 --><link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* 激活语言按钮的样式 */
+        .lang-btn.active {
+            background-color: #047857; /* emerald-700 */
+            color: white;
+            font-weight: 600;
+        }
+        /* 为英雄文本添加微妙的阴影以提高可读性 */
+        .text-shadow {
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-800 antialiased">
+
+    <!-- 语言切换器 (固定在右上角) --><nav class="fixed top-4 right-4 z-50 flex space-x-2">
+        <button id="lang-en" onclick="setLanguage('en')" class="lang-btn px-3 py-2 rounded-full text-sm font-medium bg-white/80 backdrop-blur-sm text-gray-700 hover:bg-gray-200 transition-colors shadow">
+            EN
+        </button>
+        <button id="lang-sv" onclick="setLanguage('sv')" class="lang-btn px-3 py-2 rounded-full text-sm font-medium bg-white/80 backdrop-blur-sm text-gray-700 hover:bg-gray-200 transition-colors shadow">
+            SV
+        </button>
+        <button id="lang-fi" onclick="setLanguage('fi')" class="lang-btn px-3 py-2 rounded-full text-sm font-medium bg-white/80 backdrop-blur-sm text-gray-700 hover:bg-gray-200 transition-colors shadow">
+            FI
+        </button>
+    </nav>
+
+    <!-- [第一屏：全屏英雄图片] --><section class="h-screen w-full flex items-center justify-center bg-black/50 relative">
+        <!-- 背景图片 (使用placehold.co作为后备) -->
+        <img src="https://placehold.co/1920x1080/4d3c32/69574e?text=Nordic+Sauna+Ritual" 
+             alt="[热气腾腾的桑拿木桶]" 
+             class="absolute inset-0 w-full h-full object-cover -z-10">
+        
+        <div class="text-center text-white p-4">
+            <h1 class="text-6xl md:text-8xl font-light text-shadow" data-key="heroTitle">
+                The Ritual.
+            </h1>
+            <p class="text-xl md:text-3xl font-light text-shadow mt-4" data-key="heroSubtitle">
+                A New Spirit for Your Sauna.
+            </p>
+        </div>
+    </section>
+
+    <!-- [第二屏：白色背景，大量留白] --><section class="bg-white py-20 md:py-32">
+        <div class="max-w-2xl mx-auto px-6 text-center">
+            <p class="text-lg md:text-xl leading-relaxed text-gray-700" data-key="introDesc">
+                This is not just a sauna scent. It is an invitation to transform your ritual. We blended ancient Eastern wisdom with the timeless Finnish sauna tradition, creating a multi-sensory experience designed to ground your mind and relax your body.
+            </p>
+        </div>
+    </section>
+
+    <!-- [新!!：如何使用 版块] -->
+    <section class="bg-white pb-20 md:pb-32">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-semibold text-center text-gray-800" data-key="howToTitle">
+                How to Use Your Ritual
+            </h2>
+            <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 text-center">
+                <!-- 步骤 1 -->
+                <div class="flex flex-col items-center">
+                    <div class="flex-shrink-0 h-16 w-16 flex items-center justify-center bg-emerald-100 rounded-full">
+                        <!-- 图标: 药包 -> 水桶 -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-emerald-700"><path d="m10.2 2.8-6.6 6.6C2.3 10.7 1.6 12.3 2 14c.4 1.8 2 3.3 3.8 3.7 1.7.4 3.4-.2 4.7-1.5l6.6-6.6"/><path d="m14 6 5.6 5.6"/><path d="M22 14v-1.3c0-1.8-1.5-3.3-3.3-3.3h-1.3"/><path d="M18 16v.4c0 1.8-1.5 3.3-3.3 3.3H10c-1.8 0-3.3-1.5-3.3-3.3V16"/></svg>
+                    </div>
+                    <h3 class="mt-4 text-xl font-semibold text-gray-800" data-key="step1Title">1. STEEP</h3>
+                    <p class="mt-2 text-gray-600" data-key="step1Desc">
+                        Place one pouch in 3-5 liters (approx. 1 gallon) of hot water in your sauna bucket. Let it steep for 5-10 minutes.
+                    </p>
+                </div>
+                <!-- 步骤 2 -->
+                <div class="flex flex-col items-center">
+                    <div class="flex-shrink-0 h-16 w-16 flex items-center justify-center bg-emerald-100 rounded-full">
+                        <!-- 图标: 勺子 -> 桑拿石 -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-emerald-700"><path d="M12 12c-2-2-2-5.3-2-5.3s-3.3 0-5.3 2C2.7 10.7 2.7 14 4.7 16s5.3 2 5.3 2"/><path d="M17.3 10.7c2 2 2 5.3 2 5.3s3.3 0 5.3-2c2-2 2-5.3 0-7.3s-5.3-2-5.3-2"/><path d="m4.2 19.8 4.6-4.6"/><path d="m10.4 8.8 1.8 1.8 1.8-1.8 1.8 1.8-1.8 1.8 1.8 1.8-1.8 1.8-1.8-1.8-1.8 1.8-1.8-1.8 1.8-1.8 5.4-5.4"/><path d="m10.4 14.2 5.4-5.4"/></svg>
+                    </div>
+                    <h3 class="mt-4 text-xl font-semibold text-gray-800" data-key="step2Title">2. ENJOY</h3>
+                    <p class="mt-2 text-gray-600" data-key="step2Desc">
+                        Ladle the fragrant, infused water onto the hot sauna stones (kiuas). Breathe deep and enjoy the therapeutic steam (löyly).
+                    </p>
+                </div>
+                <!-- 步骤 3 -->
+                <div class="flex flex-col items-center">
+                    <div class="flex-shrink-0 h-16 w-16 flex items-center justify-center bg-emerald-100 rounded-full">
+                        <!-- 图标: 湿药包 / 扩散 -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-emerald-700"><path d="M16 7.2C16 4.3 13.7 2 10.8 2S5.6 4.3 5.6 7.2v1c0 2 1.9 3.6 4.2 3.9 1.8.2 3.4-.6 4.4-1.9"/><path d="M14.4 11.2v1c0 2-1.9 3.6-4.2 3.9-1.8.2-3.4-.6-4.4-1.9"/><path d="M10.8 16v4.5c0 1.4-1.1 2.5-2.5 2.5s-2.5-1.1-2.5-2.5V16"/><path d="M10.8 20.5V16"/><path d="m16 11-.5.5c-1.1 1.1-1.1 2.9 0 4l.5.5"/></svg>
+                    </div>
+                    <h3 class="mt-4 text-xl font-semibold text-gray-800" data-key="step3Title">3. PRO-TIP</h3>
+                    <p class="mt-2 text-gray-600" data-key="step3Desc">
+                        Don't throw the pouch away! Place the hot, wet herbal pouch in a corner of the sauna room. It acts as a passive diffuser.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- [第三屏：产品展示 - 四大仪式] --><section class="bg-amber-50 py-20 md:py-24">
+        <div class="max-w-5xl mx-auto px-6 space-y-16">
+            <h2 class="text-4xl md:text-5xl font-semibold text-center text-emerald-900" data-key="ritualsTitle">
+                The Four Rituals
+            </h2>
+
+            <!-- Ritual 1: Forest Rain --><div class="grid grid-cols-1 md:grid-cols-2 items-center gap-8 md:gap-12">
+                <!-- Forest Rain - 森林雨后，绿色植被 -->
+                <img src="https://placehold.co/1200x800/344e41/a3b18a?text=Forest+Rain+(Mets%C3%A4sade)" 
+                     alt="[Forest Rain 配方 - 森林主题色块]" 
+                     class="rounded-lg shadow-xl w-full h-auto aspect-[3/2] object-cover">
+                <div class="text-left">
+                    <h3 class="text-3xl font-semibold text-gray-800" data-key="ritual1Title">Forest Rain (Metsäsade).</h3>
+                    <p class="text-lg text-gray-600 mt-4" data-key="ritual1Desc">
+                        It doesn’t just smell like a forest. It feels like one. This ritual is your escape from the noise. As the steam rises, it’s not just pine you smell, it’s the clean, crisp purity of a deep Nordic forest after a cleansing rain. It’s designed to quiet the static in your mind and help you breathe deeper. This is your reset button.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Ritual 2: Fireside --><div class="grid grid-cols-1 md:grid-cols-2 items-center gap-8 md:gap-12">
+                <div class="text-left md:order-2">
+                    <h3 class="text-3xl font-semibold text-gray-800" data-key="ritual2Title">Fireside (Takkatuli).</h3>
+                    <p class="text-lg text-gray-600 mt-4" data-key="ritual2Desc">
+                        This is more than warmth. This is comfort. We designed this ritual for the cold nights when your body feels tense and your mind is tired. The infused steam, rich with ginger and deep herbs, creates a penetrating warmth that cocoons your body, relaxes tight shoulders, and brings a profound sense of grounding. This is your sanctuary.
+                    </p>
+                </div>
+                <!-- Fireside - 温暖的壁炉 -->
+                <img src="https://placehold.co/1200x800/8c4c30/f0e6d6?text=Fireside+(Takkatuli)" 
+                     alt="[Fireside 配方 - 温暖主题色块]" 
+                     class="rounded-lg shadow-xl w-full h-auto aspect-[3/2] object-cover md:order-1">
+            </div>
+
+            <!-- Ritual 3: Summer Courtyard --><div class="grid grid-cols-1 md:grid-cols-2 items-center gap-8 md:gap-12">
+                <!-- Summer Courtyard - 夏日花园 -->
+                <img src="https://placehold.co/1200x800/ffb703/4f3200?text=Summer+Courtyard+(Kes%C3%A4piha)" 
+                     alt="[Summer Courtyard 配方 - 夏日主题色块]" 
+                     class="rounded-lg shadow-xl w-full h-auto aspect-[3/Z:Z] object-cover">
+                <div class="text-left">
+                    <h3 class="text-3xl font-semibold text-gray-800" data-key="ritual3Title">Summer Courtyard (Kesäpiha).</h3>
+                    <p class="text-lg text-gray-600 mt-4" data-key="ritual3Desc">
+                        This isn’t just a scent. It’s a moment of peace. We captured the feeling of a quiet, sun-drenched garden. The soft, green, and gentle floral steam is designed to soothe, not overwhelm. It calms a busy mind and smooths the edges of a stressful day. This is your meditation.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Ritual 4: Mountain Wind --><div class="grid grid-cols-1 md:grid-cols-2 items-center gap-8 md:gap-12">
+                <div class="text-left md:order-2">
+                    <h3 class="text-3xl font-semibold text-gray-800" data-key="ritual4Title">Mountain Wind (Vuorituuli).</h3>
+                    <p class="text-lg text-gray-600 mt-4" data-key="ritual4Desc">
+                        This isn’t just fresh. It’s alive. Designed for the moments you feel blocked or sluggish, this ritual is a jolt of pure energy. The powerful, uplifting steam cuts through the mental fog, awakens your senses, and makes you feel clear and renewed. This is your focus.
+                    </p>
+                </div>
+                <!-- Mountain Wind - 雪山、风、清新 -->
+                <img src="https://placehold.co/1200x800/cad2c5/2f3e46?text=Mountain+Wind+(Vuorituuli)" 
+                     alt="[Mountain Wind 配方 - 清新主题色块]" 
+                     class="rounded-lg shadow-xl w-full h-auto aspect-[3/2] object-cover md:order-1">
+            </div>
+
+        </div>
+    </section>
+
+    <!-- [第四屏：行动号召 (CTA)] --><section class="bg-white py-20 md:py-24">
+        <div class="max-w-md mx-auto px-6 text-center">
+            <h2 class="text-4xl md:text-5xl font-semibold text-gray-800" data-key="ctaTitle">
+                Don't Let the Feeling End.
+            </h2>
+            <div class="flex flex-col space-y-4 mt-8">
+                <a href="#" class="w-full inline-block text-center bg-gray-100 text-emerald-800 font-semibold px-8 py-4 rounded-lg border border-gray-300 hover:bg-gray-200 transition-colors text-lg" data-key="ctaButton1">
+                    Shop the Gift Kit
+                </a>
+                <a href="#" class="w-full inline-block text-center bg-emerald-600 text-white font-semibold px-8 py-4 rounded-lg hover:bg-emerald-700 transition-colors text-lg" data-key="ctaButton2">
+                    Join the Ritual Club
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- [第五屏：安全与承诺] --><footer class="bg-amber-50 py-16 md:py-20">
+        <div class="max-w-3xl mx-auto px-6 space-y-10">
+            <!-- 承诺 --><div class="flex flex-col sm:flex-row justify-center items-center gap-6 sm:gap-12 text-gray-700">
+                <div class="flex items-center space-x-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-emerald-600 h-7 w-7 flex-shrink-0"><path d="M2 18a10 10 0 0 1 10-10h8a10 10 0 0 1 0 20H4.2c-1.2 0-2.2-1-2.2-2.2Z"/><path d="m10 10-2-2"/><path d="m10 10 2-2"/><path d="m10 10 2 2"/><path d="m10 10-2 2"/><path d="M14 6 12 4"/><path d="M14 6 12 8"/><path d="m14 6 2-2"/><path d="m14 6-2-2"/></svg>
+                    <span class="text-lg font-semibold" data-key="promise1Title">100% NATURAL</span>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-emerald-600 h-7 w-7 flex-shrink-0"><path d="M18 11V6.5c0-1.7-1.3-3-3-3s-3 1.3-3 3V11"/><path d="M12 11V6.5c0-1.7-1.3-3-3-3s-3 1.3-3 3V11"/><path d="M12 22a5 5 0 0 0 5-5v-5a5 5 0 0 0-10 0v5a5 5 0 0 0 5 5Z"/></svg>
+                    <span class="text-lg font-semibold" data-key="promise2Title">HAND-BLENDED</span>
+                </div>
+            </div>
+
+            <!-- 安全警告 --><div class="border-2 border-red-400 bg-red-50 rounded-lg p-4">
+                <h3 class="text-xl font-bold text-red-800 text-center mb-3" data-key="safetyTitle">
+                    Safety First: Please Read
+                </h3>
+                <div class="text-red-700 space-y-2">
+                    <p>
+                        <strong class="font-semibold" data-key="safetyWarning">⚠️ WARNING:</strong>
+                        <span data-key="safetyDesc">
+                            Read instructions carefully before use. For external, aromatic use only. Not for consumption. Not for direct skin contact. May cause an allergic reaction. Discontinue use immediately if skin or respiratory irritation occurs. NEVER PLACE POUCH DIRECTLY ON HOT STONES - FIRE HAZARD. Keep out of reach of children.
+                        </span>
+                    </p>
+                </div>
+            </div>
+            
+            <p class="text-center text-gray-500 text-sm">
+                © 2024 Nordic Blooms Garden. All rights reserved.
+            </p>
+
+        </div>
+    </footer>
+
+
+    <script>
+        // 存储所有翻译
+        const translations = {
+            en: {
+                // 第1屏
+                heroTitle: "The Ritual.",
+                heroSubtitle: "A New Spirit for Your Sauna.",
+                // 第2屏
+                introDesc: "This is not just a sauna scent. It is an invitation to transform your ritual. We blended ancient Eastern wisdom with the timeless Finnish sauna tradition, creating a multi-sensory experience designed to ground your mind and relax your body.",
+                // 如何使用
+                howToTitle: "How to Use Your Ritual",
+                step1Title: "1. STEEP",
+                step1Desc: "Place one pouch in 3-5 liters (approx. 1 gallon) of hot water in your sauna bucket. Let it steep for 5-10 minutes.",
+                step2Title: "2. ENJOY",
+                step2Desc: "Ladle the fragrant, infused water onto the hot sauna stones (kiuas). Breathe deep and enjoy the therapeutic steam (löyly).",
+                step3Title: "3. PRO-TIP",
+                step3Desc: "Don't throw the pouch away! Place the hot, wet herbal pouch in a corner of the sauna room. It acts as a passive diffuser.",
+                // 第3屏
+                ritualsTitle: "The Four Rituals",
+                ritual1Title: "Forest Rain (Metsäsade).",
+                ritual1Desc: "It doesn’t just smell like a forest. It feels like one. This ritual is your escape from the noise. As the steam rises, it’s not just pine you smell, it’s the clean, crisp purity of a deep Nordic forest after a cleansing rain. It’s designed to quiet the static in your mind and help you breathe deeper. This is your reset button.",
+                ritual2Title: "Fireside (Takkatuli).",
+                ritual2Desc: "This is more than warmth. This is comfort. We designed this ritual for the cold nights when your body feels tense and your mind is tired. The infused steam, rich with ginger and deep herbs, creates a penetrating warmth that cocoons your body, relaxes tight shoulders, and brings a profound sense of grounding. This is your sanctuary.",
+                ritual3Title: "Summer Courtyard (Kesäpiha).",
+                ritual3Desc: "This isn’t just a scent. It’s a moment of peace. We captured the feeling of a quiet, sun-drenched garden. The soft, green, and gentle floral steam is designed to soothe, not overwhelm. It calms a busy mind and smooths the edges of a stressful day. This is your meditation.",
+                ritual4Title: "Mountain Wind (Vuorituuli).",
+                ritual4Desc: "This isn’t just fresh. It’s alive. Designed for the moments you feel blocked or sluggish, this ritual is a jolt of pure energy. The powerful, uplifting steam cuts through the mental fog, awakens your senses, and makes you feel clear and renewed. This is your focus.",
+                // 第4屏
+                ctaTitle: "Don't Let the Feeling End.",
+                ctaButton1: "Shop the Gift Kit",
+                ctaButton2: "Join the Ritual Club",
+                // 第5屏
+                promise1Title: "100% NATURAL",
+                promise2Title: "HAND-BLENDED",
+                safetyTitle: "Safety First: Please Read",
+                safetyWarning: "⚠️ WARNING:",
+                safetyDesc: "Read instructions carefully before use. For external, aromatic use only. Not for consumption. Not for direct skin contact. May cause an allergic reaction. Discontinue use immediately if skin or respiratory irritation occurs. NEVER PLACE POUCH DIRECTLY ON HOT STONES - FIRE HAZARD. Keep out of reach of children.",
+            },
+            sv: {
+                // 第1屏
+                heroTitle: "Ritualen.",
+                heroSubtitle: "En ny anda för din bastu.",
+                // 第2屏
+                introDesc: "Det här är inte bara en bastudoft. Det är en inbjudan att förvandla din ritual. Vi blandade gammal österländsk visdom med den tidlösa finska bastutraditionen och skapade en mångsensorisk upplevelse designad för att jorda ditt sinne och slappna av din kropp.",
+                // 如何使用
+                howToTitle: "Så här använder du din ritual",
+                step1Title: "1. BRYGG",
+                step1Desc: "Placera en påse i 3-5 liter (ca 1 gallon) varmt vatten i din bastuhink. Låt dra i 5-10 minuter.",
+                step2Title: "2. NJUT",
+                step2Desc: "Skopa det doftande, infunderade vattnet på de heta bastustenarna (kiuas). Andas djupt och njut av den terapeutiska ångan (löyly).",
+                step3Title: "3. PROFFSTIPS",
+                step3Desc: "Kasta inte påsen! Placera den varma, blöta örtpåsen i ett hörn av basturummet. Den fungerar som en passiv doftspridare.",
+                // 第3rd屏
+                ritualsTitle: "De fyra ritualerna",
+                ritual1Title: "Skogsregn (Metsäsade).",
+                ritual1Desc: "Det doftar inte bara som en skog. Det känns som en. Denna ritual är din flykt från bruset. När ångan stiger är det inte bara tall du känner, det är den rena, friska klarheten från en djup nordisk skog efter ett renande regn. Den är utformad för att tysta bruset i ditt sinne och hjälpa dig att andas djupare. Det här är din återställningsknapp.",
+                ritual2Title: "Vid brasan (Takkatuli).",
+                ritual2Desc: "Detta är mer än värme. Detta är komfort. Vi designade denna ritual för kalla nätter när din kropp känns spänd och ditt sinne är trött. Den infunderade ångan, rik på ingefära och djupa örter, skapar en genomträngande värme som omsluter din kropp, slappnar av spända axlar och ger en djup känsla av jordning. Detta är din fristad.",
+                ritual3Title: "Sommargård (Kesäpiha).",
+                ritual3Desc: "Detta är inte bara en doft. Det är ett ögonblick av frid. Vi fångade känslan av en tyst, soldränkt trgård. Den mjuka, gröna och milda blommiga ångan är designad för att lugna, inte överväldiga. Den lugnar ett upptaget sinne och slätar ut kanterna på en stressig dag. Detta är din meditation.",
+                ritual4Title: "Bergsvind (Vuorituuli).",
+                ritual4Desc: "Detta är inte bara friskt. Det är levande. Designad för stunder då du känner dig blockerad eller trög, är denna ritual en stöt av ren energi. Den kraftfulla, upplyftande ångan skär igenom den mentala dimman, väcker dina sinnen och får dig att känna dig klar och förnyad. Detta är ditt fokus.",
+                // 第4屏
+                ctaTitle: "Låt inte känslan ta slut.",
+                ctaButton1: "Köp presentsetet",
+                ctaButton2: "Gå med i Ritualklubben",
+                // 第5屏
+                promise1Title: "100 % NATURLIGT",
+                promise2Title: "HANDBLANDAT",
+                safetyTitle: "Säkerheten först: Vänligen läs",
+                safetyWarning: "⚠️ VARNING:",
+                safetyDesc: "Läs instruktionerna noggrant före användning. Endast för extern, aromatisk användning. Får ej konsumeras. Ej för direkt hudkontakt. Kan orsaka allergisk reaktion. Avbryt användningen omedelbart om hud- eller andningsirritation uppstår. PLACERA ALDRIG PÅSEN DIREKT PÅ HETA STENAR - BRANDRISK. Förvaras utom räckhåll för barn.",
+            },
+            fi: {
+                // 第1Screen
+                heroTitle: "Rituaali.",
+                heroSubtitle: "Uusi henki saunaasi.",
+                // 第2Screen
+                introDesc: "Tämä ei ole vain saunatuoksu. Se on kutsu muuttamaan rituaalisi. Yhdistimme muinaisen itämaisen viisauden ajattomaan suomalaiseen saunaperinteeseen luoden moniaistillisen kokemuksen, joka on suunniteltu maadoittamaan mielesi ja rentouttamaan kehosi.",
+                // 如何使用
+                howToTitle: "Rituaalin käyttöohjeet",
+                step1Title: "1. HAUDUTA",
+                step1Desc: "Aseta yksi pussi 3-5 litraan (noin 1 gallona) kuumaa vettä saunakiuluusi. Anna hautua 5-10 minuuttia.",
+                step2Title: "2. NAUTI",
+                step2Desc: "Heitä tuoksuvaa, infusoitua vettä kuumille kiukaan kiville. Hengitä syvään ja nauti terapeuttisesta höyrystä (löyly).",
+                step3Title: "3. PRO-VINKKI",
+                step3Desc: "Älä heitä pussia pois! Aseta kuuma, märkä yrttipussi saunahuoneen nurkkaan. Se toimii passiivisena diffuuserina.",
+                // 第3Screen
+                ritualsTitle: "Neljä rituaalia",
+                ritual1Title: "Metsäsade.",
+                ritual1Desc: "Se ei ainoastaan tuoksu metsältä. Se tuntuu siltä. Tämä rituaali on pakosi melusta. Höyryn noustessa et tunne vain männyn tuoksua, vaan syvän pohjoismaisen metsän puhtaan, raikkaan kirkkauden puhdistavan sateen jälkeen. Se on suunniteltu hiljentämään mielesi kohina ja auttamaan sinua hengittämään syvemmin. Tämä on sinun nollauspainikkeesi.",
+                ritual2Title: "Takkatuli.",
+                ritual2Desc: "Tämä on enemmän kuin lämpöä. Tämä on mukavuutta. Suunnittelimme tämän rituaalin kylmiä öitä varten, kun kehosi tuntuu jännittyneeltä ja mielesi on väsynyt. Inkiväärillä ja syvillä yrteillä rikastettu höyry luo läpitunkevan lämmön, joka kietoo kehosi, rentouttaa kireät hartiat ja tuo syvän maadoittumisen tunteen. Tämä on sinun turvapaikkasi.",
+                ritual3Title: "Kesäpiha.",
+                ritual3Desc: "Tämä ei ole vain tuoksu. Se on rauhan hetki. Vangitsimme hiljaisen, auringon kylvettämän puutarhan tunteen. Pehmeä, vihreä ja lempeän kukkainen höyry on suunniteltu rauhoittamaan, ei ylivoimaistamaan. Se rauhoittaa kiireisen mielen ja tasoittaa stressaavan päivän särmiä. Tämä on sinun meditaatiosi.",
+                ritual4Title: "Vuorituuli.",
+                ritual4Desc: "Tämä ei ole vain raikas. Se on elossa. Tämä rituaali on suunniteltu hetkiin, jolloin tunnet itsesi tukkeutuneeksi tai hitaaksi, ja se on puhtaan energian sysäys. Voimakas, kohottava höyry leikkaa läpi henkisen sumun, herättää aistisi ja saa sinut tuntemaan olosi selkeäksi ja uudistuneeksi. Tämä on sinun keskittymisesi.",
+                // 第4Screen
+                ctaTitle: "Älä anna tunteen päättyä.",
+                ctaButton1: "Osta lahjapakkaus",
+                ctaButton2: "Liity Rituaaliklubiin",
+                // 第5Screen
+                promise1Title: "100 % LUONNOLLINEN",
+                promise2Title: "KÄSIN SEKOITETTU",
+                safetyTitle: "Turvallisuus ensin: Lue tämä",
+                safetyWarning: "⚠️ VAROITUS:",
+                safetyDesc: "Lue ohjeet huolellisesti ennen käyttöä. Vain ulkoiseen, aromaterapeuttiseen käyttöön. Ei nautittavaksi. Ei suoraan ihokosketukseen. Saattaa aiheuttaa allergisen reaktion. Lopeta käyttö välittömästi, jos ilmenee iho- tai hengitysärsytystä. ÄLÄ KOSKAAN ASETA PUSSIA SUORAAN KUUMILLE KIVILLE - TULIPALOVAARA. Pidä poissa lasten ulottuvilta.",
+            }
+        };
+
+        // 设置语言的函数
+        function setLanguage(lang) {
+            // 获取所有具有 data-key 属性的元素
+            document.querySelectorAll('[data-key]').forEach(element => {
+                const key = element.getAttribute('data-key');
+                if (translations[lang] && translations[lang][key]) {
+                    element.innerHTML = translations[lang][key];
+                }
+            });
+
+            // 更新激活按钮状态
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.getElementById(`lang-${lang}`).classList.add('active');
+            
+            // 为可访问性设置HTML标签的lang属性
+            document.documentElement.lang = lang;
+        }
+
+        // 页面加载时设置默认语言
+        document.addEventListener('DOMContentLoaded', () => {
+            // 你可以将其更改为 'fi' 或 'sv' 来设置不同的默认值
+            setLanguage('en'); 
+        });
+    </script>
+
+</body>
+</html>
+
