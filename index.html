@@ -5,22 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Nordic Blooms Garden</title>
     <style>
-        /* --- 1. Nordic Color Palette & Design System --- */
+        /* --- 1. Nordic Color Palette --- */
         :root {
-            /* 背景色：温暖的北欧米色，不再是冷白色 */
             --bg-color: #F9F7F2; 
-            /* 卡片背景：纯白，突出内容 */
             --card-bg: #FFFFFF;
-            /* 主色调：深森林绿，代表天然 */
-            --primary-color: #2D4A3E;
-            /* 强调色：柔和的金色/棕色，代表桑拿木 */
-            --accent-color: #8C7B6C;
+            --primary-color: #2D4A3E; /* 森林绿 */
+            --accent-color: #8C7B6C; /* 暖木色 */
+            --warning-bg: #FFF4E5;   /* 警告框背景 */
+            --warning-text: #663C00; /* 警告文字 */
             
             --text-main: #1A1A1A;
-            --text-sub: #666666;
+            --text-sub: #555555;
             
-            --radius: 20px; /* 柔和的圆角 */
-            --shadow: 0 8px 24px rgba(45, 74, 62, 0.08); /* 带一点绿色的阴影 */
+            --radius: 20px;
+            --shadow: 0 8px 24px rgba(45, 74, 62, 0.08);
             
             --font-stack: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
         }
@@ -31,273 +29,94 @@
             color: var(--text-main);
             margin: 0;
             padding: 0;
-            line-height: 1.5;
+            line-height: 1.6;
             -webkit-font-smoothing: antialiased;
         }
 
-        h1, h2, h3 { margin: 0; color: var(--primary-color); }
+        h1, h2, h3, h4 { margin: 0; color: var(--primary-color); letter-spacing: -0.01em; }
         
         .container {
-            max-width: 1000px;
+            max-width: 800px; /*稍微收窄一点，阅读体验更好*/
             margin: 0 auto;
             padding: 20px;
         }
 
-        /* --- 2. Header (Warm & Inviting) --- */
-        header {
-            text-align: center;
-            padding: 60px 0 30px;
-        }
-        
-        .brand-name {
-            font-size: 13px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--accent-color);
-            margin-bottom: 12px;
-        }
+        /* --- Header --- */
+        header { text-align: center; padding: 60px 0 30px; }
+        .brand-name { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--accent-color); margin-bottom: 12px; }
+        .headline { font-size: 40px; font-weight: 800; line-height: 1.1; margin-bottom: 10px; color: var(--primary-color); }
+        .section-subtitle { font-size: 16px; color: var(--text-sub); max-width: 600px; margin: 0 auto 40px; }
 
-        .headline {
-            font-size: 42px;
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 10px;
-            color: var(--primary-color);
-        }
-
-        .section-subtitle {
-            font-size: 18px;
-            color: var(--text-sub);
-            max-width: 600px;
-            margin: 0 auto 40px;
-        }
-
-        /* --- 3. Visual Gallery (The "Synthesized" Look) --- */
-        /* 把4张图做成一个整齐的画廊带 */
+        /* --- Visual Gallery --- */
         .gallery-section {
             background: #fff;
-            padding: 20px;
+            padding: 15px;
             border-radius: var(--radius);
             box-shadow: var(--shadow);
-            margin-bottom: 50px;
+            margin-bottom: 40px;
         }
+        .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+        .gallery-item { position: relative; border-radius: 12px; overflow: hidden; aspect-ratio: 1/1; background: #f0f0f0; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+        .gallery-item:hover img { transform: scale(1.1); }
+        .gallery-caption { position: absolute; bottom: 0; left: 0; right: 0; background: rgba(45, 74, 62, 0.85); color: #fff; padding: 6px; font-size: 11px; text-align: center; font-weight: 600; }
 
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr); /* 电脑上4个并排 */
-            gap: 15px;
-        }
-
-        .gallery-item {
-            position: relative;
-            border-radius: 12px;
-            overflow: hidden;
-            aspect-ratio: 1/1; /* 强制正方形 */
-            background: #f0f0f0;
-            border: 1px solid rgba(0,0,0,0.05);
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* 自动裁剪填满 */
-            transition: transform 0.5s;
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-
-        .gallery-caption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(45, 74, 62, 0.85); /* 半透明森林绿 */
-            color: #fff;
-            padding: 8px;
-            font-size: 12px;
-            text-align: center;
-            font-weight: 600;
-        }
-
-        /* --- 4. Language Switcher (Green Theme) --- */
-        .lang-switch {
-            display: flex;
-            justify-content: center;
-            background: #EAE6DF; /* 浅米色背景 */
-            padding: 4px;
-            border-radius: 100px;
-            margin: 0 auto 40px;
-            width: fit-content;
-        }
-
-        .lang-btn {
-            border: none;
-            background: none;
-            padding: 8px 24px;
-            border-radius: 100px;
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--text-sub);
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .lang-btn.active {
-            background: var(--primary-color);
-            color: #fff;
-            box-shadow: 0 4px 10px rgba(45, 74, 62, 0.2);
-        }
-
+        /* --- Language Switcher --- */
+        .lang-switch { display: flex; justify-content: center; background: #EAE6DF; padding: 4px; border-radius: 100px; margin: 0 auto 40px; width: fit-content; position: sticky; top: 20px; z-index: 100; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        .lang-btn { border: none; background: none; padding: 8px 20px; border-radius: 100px; font-size: 14px; font-weight: 600; color: var(--text-sub); cursor: pointer; transition: all 0.2s; }
+        .lang-btn.active { background: var(--primary-color); color: #fff; box-shadow: 0 4px 10px rgba(45, 74, 62, 0.2); }
         .lang-content { display: none; animation: fadeIn 0.5s; }
         .lang-content.active { display: block; }
 
-        /* --- 5. Bento Grid Cards --- */
-        .bento-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-bottom: 40px;
-        }
+        /* --- Cards & Lists --- */
+        .bento-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 30px; }
+        .card { background: var(--card-bg); border-radius: var(--radius); padding: 25px; box-shadow: var(--shadow); border: 1px solid rgba(0,0,0,0.02); }
+        .card-icon { font-size: 28px; margin-bottom: 10px; }
+        .card-title { font-size: 18px; font-weight: 700; margin-bottom: 6px; color: var(--primary-color); }
+        .card-text { color: var(--text-sub); font-size: 14px; }
 
-        .card {
-            background: var(--card-bg);
-            border-radius: var(--radius);
-            padding: 30px;
-            box-shadow: var(--shadow);
-            border: 1px solid rgba(0,0,0,0.02);
-        }
-
-        .card-icon { font-size: 32px; margin-bottom: 15px; }
-        .card-title { font-size: 20px; font-weight: 700; margin-bottom: 8px; color: var(--primary-color); }
-        .card-text { color: var(--text-sub); font-size: 15px; }
-
-        /* --- 6. Product List (Detailed Ingredients) --- */
-        .product-list {
-            background: #fff;
-            border-radius: var(--radius);
-            padding: 25px;
-            box-shadow: var(--shadow);
-            margin-bottom: 40px;
-        }
-
-        .product-item {
-            display: grid;
-            grid-template-columns: 1fr auto;
-            align-items: center;
-            padding: 20px 0;
-            border-bottom: 1px solid #F0F0F0;
-        }
+        .product-list { background: #fff; border-radius: var(--radius); padding: 25px; box-shadow: var(--shadow); margin-bottom: 40px; }
+        .product-item { display: grid; grid-template-columns: 1fr auto; align-items: center; padding: 15px 0; border-bottom: 1px solid #F0F0F0; }
         .product-item:last-child { border-bottom: none; }
-        
-        .p-name { font-weight: 700; font-size: 18px; color: var(--primary-color); }
-        .p-desc { font-size: 14px; color: var(--text-sub); margin-top: 4px; }
-        
-        /* 完整的配料表样式 */
-        .p-ingredients {
-            font-size: 12px;
-            color: var(--accent-color);
-            margin-top: 4px;
-            font-weight: 500;
-            display: block;
-        }
+        .p-name { font-weight: 700; font-size: 17px; color: var(--primary-color); }
+        .p-desc { font-size: 13px; color: var(--text-sub); margin-top: 2px; }
+        .p-ingredients { font-size: 12px; color: var(--accent-color); margin-top: 2px; font-weight: 500; }
+        .p-badge { background: #F2F5F3; padding: 6px 12px; border-radius: 8px; font-size: 11px; font-weight: 700; color: var(--primary-color); text-align: right; }
 
-        .p-badge { 
-            background: #F2F5F3; 
-            padding: 8px 16px; 
-            border-radius: 8px; 
-            font-size: 12px; 
-            font-weight: 700; 
-            color: var(--primary-color);
-            text-align: right;
-        }
+        /* --- NEW: How to Use Section --- */
+        .usage-section { background: #fff; border-radius: var(--radius); padding: 30px; box-shadow: var(--shadow); margin-bottom: 40px; }
+        .section-header { text-align: center; margin-bottom: 25px; font-size: 22px; font-weight: 700; }
+        .steps-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; text-align: center; }
+        .step-icon { font-size: 32px; margin-bottom: 10px; display: block; }
+        .step-title { font-weight: 700; font-size: 15px; margin-bottom: 5px; display: block; }
+        .step-desc { font-size: 13px; color: var(--text-sub); line-height: 1.4; }
 
-        /* --- 7. CTA Section (Green & Price Update) --- */
-        .cta-section {
-            text-align: center;
-            margin-top: 40px;
-            padding: 50px 20px;
-            background: #fff;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            border: 2px solid var(--primary-color); /* 增加一个高级的边框 */
-        }
+        /* --- NEW: Safety Section --- */
+        .safety-section { background: var(--warning-bg); border-radius: var(--radius); padding: 25px; margin-bottom: 40px; border: 1px solid rgba(0,0,0,0.05); }
+        .safety-title { color: var(--warning-text); font-weight: 700; font-size: 16px; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+        .safety-list { margin: 0; padding-left: 20px; color: var(--warning-text); font-size: 13px; }
+        .safety-list li { margin-bottom: 5px; }
 
-        .price-tag {
-            background: #F2F5F3;
-            display: inline-block;
-            padding: 6px 16px;
-            border-radius: 100px;
-            font-weight: 700;
-            color: var(--primary-color);
-            margin-bottom: 10px;
-            font-size: 12px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
+        /* --- Founder Note --- */
+        .founder-note { text-align: center; padding: 30px; color: var(--text-sub); font-style: italic; font-size: 14px; border-top: 1px solid #eee; margin-top: 40px; }
 
-        .price-display {
-            font-size: 52px;
-            font-weight: 800;
-            color: var(--primary-color);
-            letter-spacing: -1px;
-            margin-bottom: 5px;
-        }
-        
+        /* --- CTA Section --- */
+        .cta-section { text-align: center; margin-top: 20px; padding: 40px 20px; background: #fff; border-radius: var(--radius); box-shadow: var(--shadow); border: 2px solid var(--primary-color); }
+        .price-tag { background: #F2F5F3; display: inline-block; padding: 6px 16px; border-radius: 100px; font-weight: 700; color: var(--primary-color); margin-bottom: 10px; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; }
+        .price-display { font-size: 52px; font-weight: 800; color: var(--primary-color); letter-spacing: -1px; margin-bottom: 5px; }
         .price-sub { color: var(--text-sub); margin-bottom: 30px; font-size: 14px; }
-
-        .btn-group {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            align-items: center;
-        }
-
-        .buy-btn {
-            display: inline-block;
-            background: var(--primary-color); /* 森林绿按钮 */
-            color: #fff;
-            text-decoration: none;
-            padding: 18px 48px;
-            border-radius: 100px;
-            font-size: 16px;
-            font-weight: 700;
-            transition: all 0.3s;
-            box-shadow: 0 10px 25px rgba(45, 74, 62, 0.3);
-            width: 100%;
-            max-width: 320px;
-        }
-
-        .sub-btn {
-            display: inline-block;
-            background: #fff;
-            color: var(--primary-color);
-            border: 2px solid #F0F0F0;
-            text-decoration: none;
-            padding: 16px 48px;
-            border-radius: 100px;
-            font-size: 16px;
-            font-weight: 700;
-            transition: all 0.3s;
-            width: 100%;
-            max-width: 320px;
-        }
-
+        .btn-group { display: flex; flex-direction: column; gap: 15px; align-items: center; }
+        .buy-btn { display: inline-block; background: var(--primary-color); color: #fff; text-decoration: none; padding: 18px 48px; border-radius: 100px; font-size: 16px; font-weight: 700; transition: all 0.3s; box-shadow: 0 10px 25px rgba(45, 74, 62, 0.3); width: 100%; max-width: 320px; }
+        .sub-btn { display: inline-block; background: #fff; color: var(--primary-color); border: 2px solid #F0F0F0; text-decoration: none; padding: 16px 48px; border-radius: 100px; font-size: 16px; font-weight: 700; transition: all 0.3s; width: 100%; max-width: 320px; }
         .buy-btn:hover { transform: translateY(-2px); box-shadow: 0 15px 35px rgba(45, 74, 62, 0.4); background: #1f352c; }
         .sub-btn:hover { border-color: var(--primary-color); }
 
-        /* Animations & Mobile */
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
         @media (max-width: 768px) {
-            .gallery-grid {
-                grid-template-columns: repeat(2, 1fr); /* 手机上变成 2x2 */
-            }
-            .headline { font-size: 32px; }
-            .product-item { grid-template-columns: 1fr; gap: 10px; }
-            .p-badge { text-align: left; width: fit-content; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+            .product-item { grid-template-columns: 1fr; gap: 8px; }
+            .p-badge { text-align: left; margin-top: 5px; }
+            .steps-grid { grid-template-columns: 1fr; gap: 30px; }
         }
     </style>
 </head>
@@ -313,22 +132,10 @@
 
         <div class="gallery-section">
             <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="https://raw.githubusercontent.com/YangHong1206/nordic_sauna_berbal_essences/main/%E7%A9%BA%E5%B1%B1%E6%96%B0%E9%9B%A8.png" alt="Forest Rain">
-                    <div class="gallery-caption">Forest Rain</div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://raw.githubusercontent.com/YangHong1206/nordic_sauna_berbal_essences/main/%E5%9B%B4%E7%82%89%E5%A4%9C%E8%AF%9D.png" alt="Fireside">
-                    <div class="gallery-caption">Fireside</div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://raw.githubusercontent.com/YangHong1206/nordic_sauna_berbal_essences/main/%E5%A4%8F%E6%97%A5%E9%97%B2%E5%BA%AD.png" alt="Summer Courtyard">
-                    <div class="gallery-caption">Summer</div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://raw.githubusercontent.com/YangHong1206/nordic_sauna_berbal_essences/main/%E9%A3%8E%E8%BF%87%E5%8D%97%E5%B1%B1.png" alt="Mountain Wind">
-                    <div class="gallery-caption">Mt. Wind</div>
-                </div>
+                <div class="gallery-item"><img src="https://raw.githubusercontent.com/YangHong1206/nordic_sauna_berbal_essences/main/%E7%A9%BA%E5%B1%B1%E6%96%B0%E9%9B%A8.png"><div class="gallery-caption">Forest Rain</div></div>
+                <div class="gallery-item"><img src="https://raw.githubusercontent.com/YangHong1206/nordic_sauna_berbal_essences/main/%E5%9B%B4%E7%82%89%E5%A4%9C%E8%AF%9D.png"><div class="gallery-caption">Fireside</div></div>
+                <div class="gallery-item"><img src="https://raw.githubusercontent.com/YangHong1206/nordic_sauna_berbal_essences/main/%E5%A4%8F%E6%97%A5%E9%97%B2%E5%BA%AD.png"><div class="gallery-caption">Summer</div></div>
+                <div class="gallery-item"><img src="https://raw.githubusercontent.com/YangHong1206/nordic_sauna_berbal_essences/main/%E9%A3%8E%E8%BF%87%E5%8D%97%E5%B1%B1.png"><div class="gallery-caption">Mt. Wind</div></div>
             </div>
         </div>
 
@@ -352,191 +159,148 @@
                     <div class="card-text">Sekoitettu rakkaudella ja ammattitaidolla Vaasassa.</div>
                 </div>
             </div>
-            <h3 style="margin-left: 10px; margin-bottom: 15px;">Neljä Rituaalia (4 x 30g)</h3>
+
             <div class="product-list">
+                <h3 style="margin-bottom:20px;">Neljä Rituaalia (4 x 30g)</h3>
                 <div class="product-item">
-                    <div>
-                        <div class="p-name">Metsäsade</div>
-                        <div class="p-ingredients">Männynneulanen, Sypressi, Valkoväinönputki</div>
-                        <div class="p-desc">Puhdistava ja raikas.</div>
-                    </div>
-                    <div class="p-badge">Tuoksu: Mänty</div>
+                    <div><div class="p-name">Metsäsade</div><div class="p-ingredients">Männynneulanen, Sypressi, Valkoväinönputki</div><div class="p-desc">Puhdistava ja raikas.</div></div>
+                    <div class="p-badge">Mänty</div>
                 </div>
                 <div class="product-item">
-                    <div>
-                        <div class="p-name">Takkatuli</div>
-                        <div class="p-ingredients">Inkivääri, Mandariini, Kiinanväinönputki</div>
-                        <div class="p-desc">Syvästi lämmittävä.</div>
-                    </div>
-                    <div class="p-badge">Tuoksu: Lämmin</div>
+                    <div><div class="p-name">Takkatuli</div><div class="p-ingredients">Inkivääri, Mandariini, Kiinanväinönputki</div><div class="p-desc">Syvästi lämmittävä.</div></div>
+                    <div class="p-badge">Lämmin</div>
                 </div>
                 <div class="product-item">
-                    <div>
-                        <div class="p-name">Kesäpiha</div>
-                        <div class="p-ingredients">Mulperi, Lootus, Krysanteemi</div>
-                        <div class="p-desc">Rauhoittava ja lempeä.</div>
-                    </div>
-                    <div class="p-badge">Tuoksu: Kukka</div>
+                    <div><div class="p-name">Kesäpiha</div><div class="p-ingredients">Mulperi, Lootus, Krysanteemi</div><div class="p-desc">Rauhoittava ja lempeä.</div></div>
+                    <div class="p-badge">Kukka</div>
                 </div>
                 <div class="product-item">
-                    <div>
-                        <div class="p-name">Vuorituuli</div>
-                        <div class="p-ingredients">Piparminttu, Magnoliankukka</div>
-                        <div class="p-desc">Raikastava ja avaava.</div>
-                    </div>
-                    <div class="p-badge">Tuoksu: Minttu</div>
+                    <div><div class="p-name">Vuorituuli</div><div class="p-ingredients">Piparminttu, Magnoliankukka</div><div class="p-desc">Raikastava ja avaava.</div></div>
+                    <div class="p-badge">Minttu</div>
                 </div>
+            </div>
+
+            <div class="usage-section">
+                <div class="section-header">Käyttöohjeet</div>
+                <div class="steps-grid">
+                    <div><span class="step-icon">🪣</span><span class="step-title">1. Hauduta</span><div class="step-desc">Laita pussi 3-5L kuumaa vettä (kiuluun) 5-10 minuutiksi.</div></div>
+                    <div><span class="step-icon">💧</span><span class="step-title">2. Nauti</span><div class="step-desc">Heitä vettä kiukaalle. Nauti pehmeästä yrttilöylystä.</div></div>
+                    <div><span class="step-icon">😶‍🌫️</span><span class="step-title">3. Vinkki</span><div class="step-desc">Jätä märkä pussi saunaan – se toimii diffuuserina.</div></div>
+                </div>
+            </div>
+
+            <div class="safety-section">
+                <div class="safety-title">⚠️ Tärkeää tietoa</div>
+                <ul class="safety-list">
+                    <li>Vain ulkoiseen käyttöön. Ei saa niellä.</li>
+                    <li>Älä laita pussia suoraan kuumille kiville (palovaara).</li>
+                    <li>Jos olet raskaana tai sinulla on allergioita, tarkista ainesosat.</li>
+                </ul>
             </div>
         </div>
 
         <div id="sv" class="lang-content">
             <div class="bento-grid">
-                <div class="card">
-                    <div class="card-icon">🌿</div>
-                    <div class="card-title">100% Naturlig</div>
-                    <div class="card-text">Endast äkta örter. Inga kemikalier eller tillsatser.</div>
-                </div>
-                <div class="card">
-                    <div class="card-icon">🇫🇮</div>
-                    <div class="card-title">Handgjord</div>
-                    <div class="card-text">Blandad för hand med kärlek i Vasa.</div>
+                <div class="card"><div class="card-icon">🌿</div><div class="card-title">100% Naturlig</div><div class="card-text">Endast äkta örter. Inga kemikalier.</div></div>
+                <div class="card"><div class="card-icon">🇫🇮</div><div class="card-title">Handgjord</div><div class="card-text">Blandad för hand i Vasa.</div></div>
+            </div>
+            
+            <div class="product-list">
+                <h3 style="margin-bottom:20px;">Fyra Ritualer (4 x 30g)</h3>
+                <div class="product-item"><div><div class="p-name">Skogsregn</div><div class="p-ingredients">Tallbarr, Cypress, Angelikarot</div><div class="p-desc">Renande och frisk.</div></div><div class="p-badge">Tall</div></div>
+                <div class="product-item"><div><div class="p-name">Brasvärme</div><div class="p-ingredients">Ingefära, Mandarin, Angelikarot</div><div class="p-desc">Djupt värmande.</div></div><div class="p-badge">Varm</div></div>
+                <div class="product-item"><div><div class="p-name">Sommargård</div><div class="p-ingredients">Mullbär, Lotus, Krysanteemi</div><div class="p-desc">Lugnande och mjuk.</div></div><div class="p-badge">Blommig</div></div>
+                <div class="product-item"><div><div class="p-name">Bergsvind</div><div class="p-ingredients">Pepparmynta, Magnolia</div><div class="p-desc">Uppfriskande.</div></div><div class="p-badge">Mynta</div></div>
+            </div>
+
+            <div class="usage-section">
+                <div class="section-header">Användning</div>
+                <div class="steps-grid">
+                    <div><span class="step-icon">🪣</span><span class="step-title">1. Låt dra</span><div class="step-desc">Lägg påsen i 3-5L hett vatten i 5-10 minuter.</div></div>
+                    <div><span class="step-icon">💧</span><span class="step-title">2. Njut</span><div class="step-desc">Kasta vattnet på stenarna. Andas in.</div></div>
+                    <div><span class="step-icon">😶‍🌫️</span><span class="step-title">3. Tips</span><div class="step-desc">Lämna den våta påsen i bastun som doftspridare.</div></div>
                 </div>
             </div>
-            <h3 style="margin-left: 10px; margin-bottom: 15px;">Fyra Ritualer (4 x 30g)</h3>
-            <div class="product-list">
-                <div class="product-item">
-                    <div>
-                        <div class="p-name">Skogsregn</div>
-                        <div class="p-ingredients">Tallbarr, Cypress, Angelikarot</div>
-                        <div class="p-desc">Renande och frisk.</div>
-                    </div>
-                    <div class="p-badge">Doft: Tall</div>
-                </div>
-                <div class="product-item">
-                    <div>
-                        <div class="p-name">Brasvärme</div>
-                        <div class="p-ingredients">Ingefära, Mandarin, Angelikarot</div>
-                        <div class="p-desc">Djupt värmande.</div>
-                    </div>
-                    <div class="p-badge">Doft: Varm</div>
-                </div>
-                <div class="product-item">
-                    <div>
-                        <div class="p-name">Sommargård</div>
-                        <div class="p-ingredients">Mullbär, Lotus, Krysanteemi</div>
-                        <div class="p-desc">Lugnande och mjuk.</div>
-                    </div>
-                    <div class="p-badge">Doft: Blommig</div>
-                </div>
-                <div class="product-item">
-                    <div>
-                        <div class="p-name">Bergsvind</div>
-                        <div class="p-ingredients">Pepparmynta, Magnolia</div>
-                        <div class="p-desc">Uppfriskande.</div>
-                    </div>
-                    <div class="p-badge">Doft: Mynta</div>
-                </div>
+
+            <div class="safety-section">
+                <div class="safety-title">⚠️ Säkerhetsinformation</div>
+                <ul class="safety-list">
+                    <li>Endast för utvärtes bruk. Får ej förtäras.</li>
+                    <li>Lägg aldrig påsen direkt på heta stenar (brandrisk).</li>
+                    <li>Kontrollera ingredienser vid graviditet eller allergier.</li>
+                </ul>
             </div>
         </div>
 
         <div id="en" class="lang-content">
             <div class="bento-grid">
-                <div class="card">
-                    <div class="card-icon">🌿</div>
-                    <div class="card-title">100% Natural</div>
-                    <div class="card-text">Pure whole herbs. Zero chemicals. Zero fragrance oils.</div>
-                </div>
-                <div class="card">
-                    <div class="card-icon">🇫🇮</div>
-                    <div class="card-title">Hand-Blended</div>
-                    <div class="card-text">Crafted with passion in Vaasa, Finland.</div>
+                <div class="card"><div class="card-icon">🌿</div><div class="card-title">100% Natural</div><div class="card-text">Pure whole herbs. Zero chemicals.</div></div>
+                <div class="card"><div class="card-icon">🇫🇮</div><div class="card-title">Hand-Blended</div><div class="card-text">Crafted with passion in Vaasa.</div></div>
+            </div>
+
+            <div class="product-list">
+                <h3 style="margin-bottom:20px;">The Four Rituals (4 x 30g)</h3>
+                <div class="product-item"><div><div class="p-name">Forest Rain</div><div class="p-ingredients">Pine, Cypress, Angelica</div><div class="p-desc">Cleansing and purifying.</div></div><div class="p-badge">Pine</div></div>
+                <div class="product-item"><div><div class="p-name">Fireside</div><div class="p-ingredients">Ginger, Tangerine, Angelica</div><div class="p-desc">Deeply warming.</div></div><div class="p-badge">Warm</div></div>
+                <div class="product-item"><div><div class="p-name">Summer Courtyard</div><div class="p-ingredients">Mulberry, Lotus, Chrysanthemum</div><div class="p-desc">Calming and gentle.</div></div><div class="p-badge">Floral</div></div>
+                <div class="product-item"><div><div class="p-name">Mountain Wind</div><div class="p-ingredients">Peppermint, Magnolia</div><div class="p-desc">Refreshing and uplifting.</div></div><div class="p-badge">Mint</div></div>
+            </div>
+
+            <div class="usage-section">
+                <div class="section-header">How to Use</div>
+                <div class="steps-grid">
+                    <div><span class="step-icon">🪣</span><span class="step-title">1. Steep</span><div class="step-desc">Place pouch in 3-5L hot water bucket for 5-10 mins.</div></div>
+                    <div><span class="step-icon">💧</span><span class="step-title">2. Enjoy</span><div class="step-desc">Ladle water onto stones. Breathe deep.</div></div>
+                    <div><span class="step-icon">😶‍🌫️</span><span class="step-title">3. Pro-Tip</span><div class="step-desc">Leave wet pouch in sauna to act as a diffuser.</div></div>
                 </div>
             </div>
-            <h3 style="margin-left: 10px; margin-bottom: 15px;">The Four Rituals (4 x 30g)</h3>
-            <div class="product-list">
-                <div class="product-item">
-                    <div>
-                        <div class="p-name">Forest Rain</div>
-                        <div class="p-ingredients">Pine Needle, Cypress, Angelica Root</div>
-                        <div class="p-desc">Cleansing and purifying.</div>
-                    </div>
-                    <div class="p-badge">Scent: Pine</div>
-                </div>
-                <div class="product-item">
-                    <div>
-                        <div class="p-name">Fireside</div>
-                        <div class="p-ingredients">Dried Ginger, Tangerine Peel, Angelica Root</div>
-                        <div class="p-desc">Deeply warming.</div>
-                    </div>
-                    <div class="p-badge">Scent: Warm</div>
-                </div>
-                <div class="product-item">
-                    <div>
-                        <div class="p-name">Summer Courtyard</div>
-                        <div class="p-ingredients">Mulberry Leaf, Lotus, Chrysanthemum</div>
-                        <div class="p-desc">Calming and gentle.</div>
-                    </div>
-                    <div class="p-badge">Scent: Floral</div>
-                </div>
-                <div class="product-item">
-                    <div>
-                        <div class="p-name">Mountain Wind</div>
-                        <div class="p-ingredients">Peppermint Leaf, Magnolia Flower</div>
-                        <div class="p-desc">Refreshing and uplifting.</div>
-                    </div>
-                    <div class="p-badge">Scent: Mint</div>
-                </div>
+
+            <div class="safety-section">
+                <div class="safety-title">⚠️ Safety Precautions</div>
+                <ul class="safety-list">
+                    <li>For external, aromatic use only. Do not consume.</li>
+                    <li>Never place pouch directly on hot stones (Fire Hazard).</li>
+                    <li>Check ingredients if pregnant or have allergies.</li>
+                </ul>
             </div>
         </div>
 
         <div id="cn" class="lang-content">
             <div class="bento-grid">
-                <div class="card">
-                    <div class="card-icon">🌿</div>
-                    <div class="card-title">100% 纯天然</div>
-                    <div class="card-text">只有纯粹的完整草药。零化学添加，零香精。</div>
-                </div>
-                <div class="card">
-                    <div class="card-icon">🇫🇮</div>
-                    <div class="card-title">芬兰手工</div>
-                    <div class="card-text">在瓦萨手工调配，融合东方智慧与北欧传统。</div>
-                </div>
+                <div class="card"><div class="card-icon">🌿</div><div class="card-title">100% 纯天然</div><div class="card-text">只有纯粹的完整草药。零化学添加。</div></div>
+                <div class="card"><div class="card-icon">🇫🇮</div><div class="card-title">芬兰手工</div><div class="card-text">在瓦萨手工调配，融合东方智慧。</div></div>
             </div>
-            <h3 style="margin-left: 10px; margin-bottom: 15px;">四大仪式 (4 x 30g)</h3>
+
             <div class="product-list">
-                <div class="product-item">
-                    <div>
-                        <div class="p-name">空山新雨</div>
-                        <div class="p-ingredients">松针, 侧柏叶, 白芷</div>
-                        <div class="p-desc">净化与清新。</div>
-                    </div>
-                    <div class="p-badge">香调: 松木</div>
-                </div>
-                <div class="product-item">
-                    <div>
-                        <div class="p-name">围炉夜话</div>
-                        <div class="p-ingredients">干姜, 陈皮, 当归</div>
-                        <div class="p-desc">深度温暖。</div>
-                    </div>
-                    <div class="p-badge">香调: 暖香</div>
-                </div>
-                <div class="product-item">
-                    <div>
-                        <div class="p-name">夏日闲庭</div>
-                        <div class="p-ingredients">桑叶, 荷叶, 杭白菊</div>
-                        <div class="p-desc">宁静与柔和。</div>
-                    </div>
-                    <div class="p-badge">香调: 花香</div>
-                </div>
-                <div class="product-item">
-                    <div>
-                        <div class="p-name">风过南山</div>
-                        <div class="p-ingredients">薄荷叶, 辛夷</div>
-                        <div class="p-desc">提神与通透。</div>
-                    </div>
-                    <div class="p-badge">香调: 薄荷</div>
+                <h3 style="margin-bottom:20px;">四大仪式 (4 x 30g)</h3>
+                <div class="product-item"><div><div class="p-name">空山新雨</div><div class="p-ingredients">松针, 侧柏叶, 白芷</div><div class="p-desc">净化与清新。</div></div><div class="p-badge">松木</div></div>
+                <div class="product-item"><div><div class="p-name">围炉夜话</div><div class="p-ingredients">干姜, 陈皮, 当归</div><div class="p-desc">深度温暖。</div></div><div class="p-badge">暖香</div></div>
+                <div class="product-item"><div><div class="p-name">夏日闲庭</div><div class="p-ingredients">桑叶, 荷叶, 杭白菊</div><div class="p-desc">宁静与柔和。</div></div><div class="p-badge">花香</div></div>
+                <div class="product-item"><div><div class="p-name">风过南山</div><div class="p-ingredients">薄荷叶, 辛夷</div><div class="p-desc">提神与通透。</div></div><div class="p-badge">薄荷</div></div>
+            </div>
+
+            <div class="usage-section">
+                <div class="section-header">使用方法</div>
+                <div class="steps-grid">
+                    <div><span class="step-icon">🪣</span><span class="step-title">1. 浸泡</span><div class="step-desc">将草药包放入3-5升热水中，浸泡5-10分钟。</div></div>
+                    <div><span class="step-icon">💧</span><span class="step-title">2. 享受</span><div class="step-desc">将浸泡后的水泼在桑拿石上，深呼吸。</div></div>
+                    <div><span class="step-icon">😶‍🌫️</span><span class="step-title">3. 技巧</span><div class="step-desc">将湿药包留在桑拿房角落，持续散发香气。</div></div>
                 </div>
             </div>
+
+            <div class="safety-section">
+                <div class="safety-title">⚠️ 注意事项</div>
+                <ul class="safety-list">
+                    <li>仅供外部香薰使用，不可吞食。</li>
+                    <li>严禁将药包直接放在桑拿石上（火灾隐患）。</li>
+                    <li>孕妇或过敏体质者请先确认成分。</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="founder-note">
+            "Thank you for bringing our nature into your home. Hand-blended with love in Vaasa." <br>
+            — Founder, Nordic Blooms Garden
         </div>
 
         <div class="cta-section">
@@ -545,9 +309,8 @@
             <div class="price-sub">The Complete Discovery Kit (4 Rituals)</div>
             
             <div class="btn-group">
-                <a href="https://nordicbloomsgarden.etsy.com" class="buy-btn">Shop Gift Kit on Etsy</a>
-                
-                <a href="https://shevrilicious.gumroad.com/l/SaunaHerbalEssnces" class="sub-btn">Join Ritual Club (Monthly)</a>
+                <a href="https://nordicbloomsgarden.etsy.com" class="buy-btn">Shop on Etsy</a>
+                <a href="https://shevrilicious.gumroad.com/l/SaunaHerbalEssnces" class="sub-btn">Join Ritual Club</a>
             </div>
             
             <p style="margin-top:20px; font-size:12px; color:#86868B;">Accept: MobilePay, Card, Cash</p>
@@ -564,11 +327,8 @@
             document.querySelectorAll('.lang-content').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
             document.getElementById(lang).classList.add('active');
-            
             document.querySelectorAll('.lang-btn').forEach(btn => {
-                if(btn.getAttribute('onclick').includes(lang)) {
-                    btn.classList.add('active');
-                }
+                if(btn.getAttribute('onclick').includes(lang)) { btn.classList.add('active'); }
             });
         }
     </script>
