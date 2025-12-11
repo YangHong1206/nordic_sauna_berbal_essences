@@ -6,6 +6,11 @@
     <title>Nordic Blooms Garden</title>
     <style>
         /* --- 1. Nordic Color Palette --- */
+        /* --- 0. Global Reset (新增) --- */
+*, *::before, *::after {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent; /* 修复苹果手机点击高亮问题 */
+}
         :root {
             --bg-color: #F9F7F2; 
             --card-bg: #FFFFFF;
@@ -106,11 +111,45 @@
         .price-display { font-size: 52px; font-weight: 800; color: var(--primary-color); letter-spacing: -1px; margin-bottom: 5px; }
         .price-sub { color: var(--text-sub); margin-bottom: 30px; font-size: 14px; }
         .btn-group { display: flex; flex-direction: column; gap: 15px; align-items: center; }
-        .buy-btn { display: inline-block; background: var(--primary-color); color: #fff; text-decoration: none; padding: 18px 48px; border-radius: 100px; font-size: 16px; font-weight: 700; transition: all 0.3s; box-shadow: 0 10px 25px rgba(45, 74, 62, 0.3); width: 100%; max-width: 320px; }
-        .sub-btn { display: inline-block; background: #fff; color: var(--primary-color); border: 2px solid #F0F0F0; text-decoration: none; padding: 16px 48px; border-radius: 100px; font-size: 16px; font-weight: 700; transition: all 0.3s; width: 100%; max-width: 320px; }
-        .buy-btn:hover { transform: translateY(-2px); box-shadow: 0 15px 35px rgba(45, 74, 62, 0.4); background: #1f352c; }
-        .sub-btn:hover { border-color: var(--primary-color); }
+        .buy-btn {
+    display: inline-block;
+    background: var(--primary-color);
+    color: #fff;
+    text-decoration: none;
+    padding: 18px 20px; /* 调整内边距，防止手机上太宽 */
+    border-radius: 100px;
+    font-size: 16px;
+    font-weight: 700;
+    transition: all 0.2s;
+    box-shadow: 0 10px 25px rgba(45, 74, 62, 0.3);
+    width: 100%;
+    max-width: 320px;
+    position: relative; /* 确保层级 */
+    z-index: 10;        /* 确保在最上层 */
+    cursor: pointer;
+}
 
+.sub-btn {
+    display: inline-block;
+    background: #fff;
+    color: var(--primary-color);
+    border: 2px solid #F0F0F0;
+    text-decoration: none;
+    padding: 16px 20px; /* 调整内边距 */
+    border-radius: 100px;
+    font-size: 16px;
+    font-weight: 700;
+    transition: all 0.2s;
+    width: 100%;
+    max-width: 320px;
+    position: relative; /* 确保层级 */
+    z-index: 10;        /* 确保在最上层 */
+    cursor: pointer;
+}
+
+/* 手机按下去的效果 */
+.buy-btn:active { transform: scale(0.98); background: #1f352c; }
+.sub-btn:active { transform: scale(0.98); background: #f9f9f9; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @media (max-width: 768px) {
             .gallery-grid { grid-template-columns: repeat(2, 1fr); }
@@ -334,3 +373,4 @@
     </script>
 </body>
 </html>
+
