@@ -5,21 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Nordic Blooms Garden</title>
     <style>
-        /* 1. Apple Design System Variables */
+        /* --- 1. Apple Design System --- */
         :root {
-            --bg-color: #F5F5F7; /* Apple's signature off-white */
+            --bg-color: #F5F5F7;
             --card-bg: #FFFFFF;
             --text-primary: #1D1D1F;
             --text-secondary: #86868B;
-            --accent-color: #000000; /* Luxury Black */
-            --success-color: #00873E; /* Subtle green for nature */
+            --accent-color: #000000;
             --radius-large: 24px;
-            --radius-small: 12px;
             --shadow: 0 10px 30px rgba(0,0,0,0.04);
             --font-stack: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
         }
 
-        /* 2. Reset & Typography */
         body {
             font-family: var(--font-stack);
             background-color: var(--bg-color);
@@ -35,13 +32,13 @@
         .container {
             max-width: 980px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 20px;
         }
 
-        /* 3. Hero Section (Big & Bold) */
+        /* --- 2. Header --- */
         header {
             text-align: center;
-            padding: 60px 0 40px;
+            padding: 60px 0 20px;
             animation: fadeUp 0.8s ease-out;
         }
         
@@ -55,74 +52,88 @@
         }
 
         .headline {
-            font-size: 48px;
+            font-size: 42px;
             font-weight: 700;
             line-height: 1.1;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             background: linear-gradient(135deg, #1D1D1F 0%, #434343 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .sub-headline {
-            font-size: 21px;
+        /* --- 3. Hero Section (Floating Ingredients) --- */
+        .ingredient-hero {
+            text-align: center;
+            margin: 40px 0 60px;
+            position: relative;
+        }
+        
+        .section-subtitle {
+            font-size: 18px;
             color: var(--text-secondary);
-            font-weight: 400;
-            max-width: 600px;
-            margin: 0 auto;
+            margin-bottom: 30px;
         }
 
-        /* 4. Product Hero Image */
-        .hero-image-container {
-            width: 100%;
-            height: 400px;
-            background-color: #fff;
-            border-radius: var(--radius-large);
-            box-shadow: var(--shadow);
-            margin: 40px 0;
-            overflow: hidden;
+        .ingredient-stage {
             position: relative;
-            /* Placeholder styling */
+            height: 500px;
+            background: radial-gradient(circle at center, #fff 0%, #F5F5F7 100%);
+            border-radius: var(--radius-large);
+            overflow: hidden;
+            box-shadow: inset 0 0 50px rgba(0,0,0,0.02);
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+
+        .ingredient-item {
+            position: absolute;
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             display: flex;
+            flex-direction: column;
             align-items: center;
-            justify-content: center;
-            color: #ccc;
-            background-image: url('https://images.unsplash.com/photo-1543163521-1bf539c55dd2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80'); /* 示例桑拿图 */
-            background-size: cover;
-            background-position: center;
+        }
+        
+        .ingredient-item img {
+            width: 200px; /* PC端默认大小 */
+            height: auto;
+            filter: drop-shadow(0 20px 30px rgba(0,0,0,0.15));
+            transition: transform 0.5s;
+        }
+        
+        .ingredient-item:hover img {
+            transform: translateY(-10px) scale(1.05);
         }
 
-        /* 5. The "Bento Grid" (Apple Feature Cards) */
-        .bento-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-bottom: 60px;
+        .ingredient-label {
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 8px 16px;
+            border-radius: 100px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            margin-top: -20px; /* 让标签稍微覆盖一点图片底部 */
+            z-index: 10;
         }
+        
+        .i-name { font-weight: 600; font-size: 14px; }
+        .i-desc { font-size: 12px; color: var(--text-secondary); display: none; } /* 默认隐藏描述保持简洁，移动端显示 */
 
-        .card {
-            background: var(--card-bg);
-            border-radius: var(--radius-large);
-            padding: 30px;
-            box-shadow: var(--shadow);
-            transition: transform 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
+        /* Positioning the 4 Rituals */
+        /* Top Left - Forest Rain */
+        .i1 { top: 5%; left: 5%; }
+        /* Top Right - Fireside */
+        .i2 { top: 10%; right: 5%; }
+        /* Bottom Left - Summer Courtyard */
+        .i3 { bottom: 10%; left: 8%; }
+        /* Bottom Right - Mountain Wind */
+        .i4 { bottom: 5%; right: 8%; }
 
-        .card:hover { transform: scale(1.02); }
-
-        .card-icon { font-size: 32px; margin-bottom: 15px; }
-        .card-title { font-size: 24px; font-weight: 600; margin-bottom: 10px; }
-        .card-text { color: var(--text-secondary); font-size: 17px; }
-
-        /* 6. Language Tabs (IOS Segment Style) */
+        /* --- 4. Language Switcher --- */
         .lang-switch {
             display: flex;
             justify-content: center;
-            background: rgba(255,255,255,0.7);
+            background: rgba(255,255,255,0.8);
             backdrop-filter: blur(20px);
-            padding: 5px;
+            padding: 4px;
             border-radius: 100px;
             margin: 0 auto 40px;
             width: fit-content;
@@ -135,7 +146,7 @@
         .lang-btn {
             border: none;
             background: none;
-            padding: 10px 20px;
+            padding: 8px 20px;
             border-radius: 100px;
             font-size: 14px;
             font-weight: 600;
@@ -153,24 +164,47 @@
         .lang-content { display: none; animation: fadeIn 0.5s; }
         .lang-content.active { display: block; }
 
-        /* 7. Product List (Minimalist) */
+        /* --- 5. Content Cards (Bento Grid) --- */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--radius-large);
+            padding: 30px;
+            box-shadow: var(--shadow);
+        }
+
+        .card-icon { font-size: 32px; margin-bottom: 15px; }
+        .card-title { font-size: 20px; font-weight: 600; margin-bottom: 8px; }
+        .card-text { color: var(--text-secondary); font-size: 15px; line-height: 1.5; }
+
+        /* --- 6. Product List --- */
         .product-list {
             background: #fff;
             border-radius: var(--radius-large);
             padding: 20px;
             box-shadow: var(--shadow);
+            margin-bottom: 40px;
         }
 
         .product-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 0;
+            padding: 18px 0;
             border-bottom: 1px solid #F5F5F7;
         }
         .product-item:last-child { border-bottom: none; }
-        .p-name { font-weight: 600; font-size: 18px; }
-        .p-desc { font-size: 14px; color: var(--text-secondary); margin-top: 4px; }
+        
+        .p-info { text-align: left; }
+        .p-name { font-weight: 600; font-size: 17px; margin-bottom: 4px; }
+        .p-desc { font-size: 13px; color: var(--text-secondary); }
+        
         .p-badge { 
             background: #F5F5F7; 
             padding: 6px 12px; 
@@ -178,56 +212,86 @@
             font-size: 12px; 
             font-weight: 600; 
             color: var(--text-secondary);
+            white-space: nowrap;
+            margin-left: 10px;
         }
 
-        /* 8. Sticky CTA (Buy Button) */
+        /* --- 7. CTA Section --- */
         .cta-section {
             text-align: center;
-            margin-top: 60px;
-            padding: 40px;
+            margin-top: 40px;
+            padding: 50px 20px;
             background: #fff;
             border-radius: var(--radius-large);
+            box-shadow: var(--shadow);
         }
 
         .price-display {
-            font-size: 56px;
+            font-size: 48px;
             font-weight: 700;
-            letter-spacing: -2px;
-            margin-bottom: 10px;
+            letter-spacing: -1px;
+            margin-bottom: 5px;
         }
         
-        .price-sub { color: var(--text-secondary); margin-bottom: 30px; }
+        .price-sub { color: var(--text-secondary); margin-bottom: 30px; font-size: 14px; }
+
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
 
         .buy-btn {
             display: inline-block;
             background: #000;
             color: #fff;
             text-decoration: none;
-            padding: 18px 48px;
+            padding: 16px 40px;
             border-radius: 100px;
-            font-size: 17px;
+            font-size: 16px;
             font-weight: 600;
             transition: all 0.3s;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+            width: 100%;
+            max-width: 300px;
         }
 
-        .buy-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        .sub-btn {
+            display: inline-block;
+            background: #F5F5F7;
+            color: #000;
+            text-decoration: none;
+            padding: 16px 40px;
+            border-radius: 100px;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s;
+            width: 100%;
+            max-width: 300px;
         }
 
-        /* Animations */
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        .buy-btn:hover { transform: translateY(-2px); box-shadow: 0 15px 30px rgba(0,0,0,0.25); }
+        .sub-btn:hover { background: #E5E5E7; }
+
+        /* --- Animations & Mobile --- */
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        /* Mobile Optimization */
         @media (max-width: 768px) {
-            .headline { font-size: 36px; }
-            .hero-image-container { height: 250px; }
-            .container { padding: 20px; }
+            .headline { font-size: 32px; }
+            .ingredient-stage { height: 400px; }
+            .ingredient-item img { width: 140px; }
+            .ingredient-label { padding: 6px 12px; margin-top: -15px; }
+            .i-name { font-size: 12px; }
+            
+            /* Mobile Positioning */
+            .i1 { top: 2%; left: -5%; }
+            .i2 { top: 5%; right: -5%; }
+            .i3 { bottom: 5%; left: -5%; }
+            .i4 { bottom: 2%; right: -5%; }
+            
+            .cta-section { padding: 30px 15px; }
         }
     </style>
 </head>
@@ -238,11 +302,40 @@
         <header>
             <div class="brand-name">Nordic Blooms Garden</div>
             <h1 class="headline">Löylyn Uusi Rituaali.</h1>
-            <p class="sub-headline">Ancient Eastern Wisdom. Timeless Finnish Tradition.</p>
+            <p class="section-subtitle">Ancient Eastern Wisdom. Timeless Finnish Tradition.</p>
         </header>
 
-        <div class="hero-image-container">
+        <div class="ingredient-hero">
+            <div class="ingredient-stage">
+                <div class="ingredient-item i1">
+                    <img src="https://raw.githubusercontent.com/YangHong1206/nordic_sauna_berbal_essences/main/%E7%A9%BA%E5%B1%B1%E6%96%B0%E9%9B%A8.png" alt="Forest Rain Herbs">
+                    <div class="ingredient-label">
+                        <div class="i-name">Forest Rain</div>
+                    </div>
+                </div>
+                
+                <div class="ingredient-item i2">
+                    <img src="https://raw.githubusercontent.com/YangHong1206/nordic_sauna_berbal_essences/main/%E5%9B%B4%E7%82%89%E5%A4%9C%E8%AF%9D.png" alt="Fireside Herbs">
+                    <div class="ingredient-label">
+                        <div class="i-name">Fireside</div>
+                    </div>
+                </div>
+                
+                <div class="ingredient-item i3">
+                    <img src="https://raw.githubusercontent.com/YangHong1206/nordic_sauna_berbal_essences/main/%E5%A4%8F%E6%97%A5%E9%97%B2%E5%BA%AD.png" alt="Summer Courtyard Herbs">
+                    <div class="ingredient-label">
+                        <div class="i-name">Summer Courtyard</div>
+                    </div>
+                </div>
+                
+                <div class="ingredient-item i4">
+                    <img src="https://raw.githubusercontent.com/YangHong1206/nordic_sauna_berbal_essences/main/%E9%A3%8E%E8%BF%87%E5%8D%97%E5%B1%B1.png" alt="Mountain Wind Herbs">
+                    <div class="ingredient-label">
+                        <div class="i-name">Mountain Wind</div>
+                    </div>
+                </div>
             </div>
+        </div>
 
         <div class="lang-switch">
             <button class="lang-btn active" onclick="switchLang('fi')">FI</button>
@@ -256,7 +349,7 @@
                 <div class="card">
                     <div class="card-icon">🌿</div>
                     <div class="card-title">100% Luonnollinen</div>
-                    <div class="card-text">Vain aitoja, kokonaisia yrttejä. Ei kemikaaleja.</div>
+                    <div class="card-text">Vain aitoja, kokonaisia yrttejä. Ei kemikaaleja, ei esansseja.</div>
                 </div>
                 <div class="card">
                     <div class="card-icon">🇫🇮</div>
@@ -264,22 +357,22 @@
                     <div class="card-text">Sekoitettu rakkaudella ja ammattitaidolla Vaasassa.</div>
                 </div>
             </div>
-            <h3>Neljä Rituaalia (4 x 30g)</h3>
+            <h3 style="margin-left: 10px; margin-bottom: 15px;">Neljä Rituaalia (4 x 30g)</h3>
             <div class="product-list">
                 <div class="product-item">
-                    <div><div class="p-name">Metsäsade</div><div class="p-desc">Puhdistava ja raikas.</div></div>
+                    <div class="p-info"><div class="p-name">Metsäsade</div><div class="p-desc">Puhdistava ja raikas.</div></div>
                     <div class="p-badge">Mänty</div>
                 </div>
                 <div class="product-item">
-                    <div><div class="p-name">Takkatuli</div><div class="p-desc">Syvästi lämmittävä.</div></div>
+                    <div class="p-info"><div class="p-name">Takkatuli</div><div class="p-desc">Syvästi lämmittävä.</div></div>
                     <div class="p-badge">Inkivääri</div>
                 </div>
                 <div class="product-item">
-                    <div><div class="p-name">Kesäpiha</div><div class="p-desc">Rauhoittava ja lempeä.</div></div>
+                    <div class="p-info"><div class="p-name">Kesäpiha</div><div class="p-desc">Rauhoittava ja lempeä.</div></div>
                     <div class="p-badge">Mulperi</div>
                 </div>
                 <div class="product-item">
-                    <div><div class="p-name">Vuorituuli</div><div class="p-desc">Raikastava ja avaava.</div></div>
+                    <div class="p-info"><div class="p-name">Vuorituuli</div><div class="p-desc">Raikastava ja avaava.</div></div>
                     <div class="p-badge">Minttu</div>
                 </div>
             </div>
@@ -298,22 +391,22 @@
                     <div class="card-text">Blandad för hand med kärlek i Vasa.</div>
                 </div>
             </div>
-            <h3>Fyra Ritualer (4 x 30g)</h3>
+            <h3 style="margin-left: 10px; margin-bottom: 15px;">Fyra Ritualer (4 x 30g)</h3>
             <div class="product-list">
                 <div class="product-item">
-                    <div><div class="p-name">Skogsregn</div><div class="p-desc">Renande och frisk.</div></div>
+                    <div class="p-info"><div class="p-name">Skogsregn</div><div class="p-desc">Renande och frisk.</div></div>
                     <div class="p-badge">Tall</div>
                 </div>
                 <div class="product-item">
-                    <div><div class="p-name">Brasvärme</div><div class="p-desc">Djupt värmande.</div></div>
+                    <div class="p-info"><div class="p-name">Brasvärme</div><div class="p-desc">Djupt värmande.</div></div>
                     <div class="p-badge">Ingefära</div>
                 </div>
                 <div class="product-item">
-                    <div><div class="p-name">Sommargård</div><div class="p-desc">Lugnande och mjuk.</div></div>
+                    <div class="p-info"><div class="p-name">Sommargård</div><div class="p-desc">Lugnande och mjuk.</div></div>
                     <div class="p-badge">Mullbär</div>
                 </div>
                 <div class="product-item">
-                    <div><div class="p-name">Bergsvind</div><div class="p-desc">Uppfriskande.</div></div>
+                    <div class="p-info"><div class="p-name">Bergsvind</div><div class="p-desc">Uppfriskande.</div></div>
                     <div class="p-badge">Mynta</div>
                 </div>
             </div>
@@ -332,22 +425,22 @@
                     <div class="card-text">Crafted with passion in Vaasa, Finland.</div>
                 </div>
             </div>
-            <h3>The Four Rituals (4 x 30g)</h3>
+            <h3 style="margin-left: 10px; margin-bottom: 15px;">The Four Rituals (4 x 30g)</h3>
             <div class="product-list">
                 <div class="product-item">
-                    <div><div class="p-name">Forest Rain</div><div class="p-desc">Cleansing and purifying.</div></div>
+                    <div class="p-info"><div class="p-name">Forest Rain</div><div class="p-desc">Cleansing and purifying.</div></div>
                     <div class="p-badge">Pine</div>
                 </div>
                 <div class="product-item">
-                    <div><div class="p-name">Fireside</div><div class="p-desc">Deeply warming.</div></div>
+                    <div class="p-info"><div class="p-name">Fireside</div><div class="p-desc">Deeply warming.</div></div>
                     <div class="p-badge">Ginger</div>
                 </div>
                 <div class="product-item">
-                    <div><div class="p-name">Summer Courtyard</div><div class="p-desc">Calming and gentle.</div></div>
+                    <div class="p-info"><div class="p-name">Summer Courtyard</div><div class="p-desc">Calming and gentle.</div></div>
                     <div class="p-badge">Mulberry</div>
                 </div>
                 <div class="product-item">
-                    <div><div class="p-name">Mountain Wind</div><div class="p-desc">Refreshing and uplifting.</div></div>
+                    <div class="p-info"><div class="p-name">Mountain Wind</div><div class="p-desc">Refreshing and uplifting.</div></div>
                     <div class="p-badge">Mint</div>
                 </div>
             </div>
@@ -366,22 +459,22 @@
                     <div class="card-text">在瓦萨手工调配，融合东方智慧与北欧传统。</div>
                 </div>
             </div>
-            <h3>四大仪式 (4 x 30g)</h3>
+            <h3 style="margin-left: 10px; margin-bottom: 15px;">四大仪式 (4 x 30g)</h3>
             <div class="product-list">
                 <div class="product-item">
-                    <div><div class="p-name">空山新雨</div><div class="p-desc">净化与清新。</div></div>
+                    <div class="p-info"><div class="p-name">空山新雨</div><div class="p-desc">净化与清新。</div></div>
                     <div class="p-badge">松针</div>
                 </div>
                 <div class="product-item">
-                    <div><div class="p-name">围炉夜话</div><div class="p-desc">深度温暖。</div></div>
+                    <div class="p-info"><div class="p-name">围炉夜话</div><div class="p-desc">深度温暖。</div></div>
                     <div class="p-badge">干姜</div>
                 </div>
                 <div class="product-item">
-                    <div><div class="p-name">夏日闲庭</div><div class="p-desc">宁静与柔和。</div></div>
+                    <div class="p-info"><div class="p-name">夏日闲庭</div><div class="p-desc">宁静与柔和。</div></div>
                     <div class="p-badge">桑叶</div>
                 </div>
                 <div class="product-item">
-                    <div><div class="p-name">风过南山</div><div class="p-desc">提神与通透。</div></div>
+                    <div class="p-info"><div class="p-name">风过南山</div><div class="p-desc">提神与通透。</div></div>
                     <div class="p-badge">薄荷</div>
                 </div>
             </div>
@@ -390,7 +483,13 @@
         <div class="cta-section">
             <div class="price-display">33 €</div>
             <div class="price-sub">The Complete Discovery Kit</div>
-            <a href="https://nordicbloomsgarden.etsy.com" class="buy-btn">Shop on Etsy</a>
+            
+            <div class="btn-group">
+                <a href="https://nordicbloomsgarden.etsy.com" class="buy-btn">Shop Gift Kit on Etsy</a>
+                
+                <a href="https://shevrilicious.gumroad.com/l/SaunaHerbalEssnces" class="sub-btn">Join Ritual Club (Monthly)</a>
+            </div>
+            
             <p style="margin-top:20px; font-size:12px; color:#86868B;">Accept: MobilePay, Card, Cash</p>
         </div>
 
@@ -409,8 +508,13 @@
             
             // Show selected content
             document.getElementById(lang).classList.add('active');
-            // Highlight button (this needs a bit of logic to find the specific button clicked, simpler here)
-            event.target.classList.add('active');
+            // Highlight specific button
+            // Loop through buttons to find the one with the correct onclick attribute
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                if(btn.getAttribute('onclick').includes(lang)) {
+                    btn.classList.add('active');
+                }
+            });
         }
     </script>
 </body>
